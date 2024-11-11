@@ -38,6 +38,26 @@ public class VentaProduccionRESTController {
                               .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/usuario/{idUsuario}")
+    public ResponseEntity<List<VentaProduccion>> getVentasProduccionByIdUsuario(@PathVariable Long idUsuario){
+        List<VentaProduccion> ventasProduccionUsuario = this.ventaProduccionService.obtenerVentasProduccionPorIdUsuario(idUsuario);
+        if(ventasProduccionUsuario.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(ventasProduccionUsuario, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/finca/{idFinca}")
+    public ResponseEntity<List<VentaProduccion>> getVentasProduccionByIdFinca(@PathVariable Long idFinca){
+        List<VentaProduccion> ventasProduccionFinca = this.ventaProduccionService.obtenerVentasProduccionPorIdFinca(idFinca);
+        if(ventasProduccionFinca.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(ventasProduccionFinca, HttpStatus.OK);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<VentaProduccion> saveVentaProduccion(@RequestBody VentaProduccion ventaProduccion) {
         VentaProduccion ventaCreada = ventaProduccionService.guardarVentaProduccion(ventaProduccion);

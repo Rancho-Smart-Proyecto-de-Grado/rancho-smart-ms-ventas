@@ -40,6 +40,26 @@ public class VentaRESTController {
                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/finca/{idFinca}")
+    public ResponseEntity<List<Venta>> getVentasByIdFinca(@PathVariable Long idFinca){
+        List<Venta> ventasFinca = this.ventaService.getVentasByIdFinca(idFinca);
+        if(ventasFinca.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(ventasFinca, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/usuario/{idUsuario}")
+    public ResponseEntity<List<Venta>> getVentasByIdUsuario(@PathVariable Long idUsuario){
+        List<Venta> ventasUsuario = this.ventaService.getFincasByIdUsuario(idUsuario);
+        if(ventasUsuario.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(ventasUsuario, HttpStatus.OK);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Venta> saveVenta(@RequestBody Venta venta) {
         Venta ventaCreada = this.ventaService.saveVenta(venta);

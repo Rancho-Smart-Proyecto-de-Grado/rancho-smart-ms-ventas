@@ -19,6 +19,14 @@ public class VentaService {
         return this.ventaRepository.findAll();
     }
 
+    public List<Venta> getVentasByIdFinca(Long idFinca){
+        return this.ventaRepository.findByIdFinca(idFinca);
+    }
+
+    public List<Venta> getFincasByIdUsuario(Long idUsuario){
+        return this.ventaRepository.findByIdUsuario(idUsuario);
+    }
+
     public Optional<Venta> getVentaById(Long id) {
         return this.ventaRepository.findById(id);
     }

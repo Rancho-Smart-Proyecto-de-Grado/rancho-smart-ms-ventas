@@ -19,6 +19,14 @@ public class VentaProduccionService {
         return ventaProduccionRepository.findAll();
     }
 
+    public List<VentaProduccion> obtenerVentasProduccionPorIdFinca(Long idFinca){
+        return this.ventaProduccionRepository.findByIdFinca(idFinca);
+    }
+
+    public List<VentaProduccion> obtenerVentasProduccionPorIdUsuario(Long idUsuario){
+        return this.ventaProduccionRepository.findByIdUsuario(idUsuario);
+    }
+
     public Optional<VentaProduccion> obtenerPorId(Long id) {
         return ventaProduccionRepository.findById(id);
     }
